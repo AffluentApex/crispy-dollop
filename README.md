@@ -35,3 +35,56 @@ Available commands:
 - Uses SHA-1 hashing for signature comparison
 - No external dependencies required
 - Stores virus signatures in JSON format
+
+## Dependencies
+
+### Required Dependencies
+1. **OpenSSL**
+   ```bash
+   # Using MSYS2/MinGW64
+   pacman -S mingw-w64-x86_64-openssl
+   ```
+
+2. **C++ Compiler**
+   - MinGW-w64 with GCC 8.1.0 or later
+   - Visual Studio 2019 or later with C++17 support
+
+3. **Build Tools**
+   ```bash
+   # Using MSYS2/MinGW64
+   pacman -S mingw-w64-x86_64-cmake mingw-w64-x86_64-ninja
+   ```
+
+### Optional Dependencies
+1. **Google Test** (for running tests)
+   ```bash
+   # Using MSYS2/MinGW64
+   pacman -S mingw-w64-x86_64-gtest
+   ```
+
+## Building
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/AffluentApex/crispy-dollop.git
+   cd crispy-dollop
+   ```
+
+2. **Build using CMake**
+   ```bash
+   mkdir build
+   cd build
+   cmake ..
+   cmake --build .
+   ```
+
+3. **Run the antivirus**
+   ```bash
+   ./simple_av.exe
+   ```
+
+## Running Tests
+```bash
+# In the build directory
+./run_tests.exe
+```
