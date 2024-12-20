@@ -1,53 +1,29 @@
 # Simple Antivirus
 
-A basic command-line antivirus program that implements signature-based detection for identifying known threats.
+A lightweight antivirus program written in C++ for Windows systems. Detects malware and suspicious patterns through signature matching and behavioral analysis.
 
 ## Features
 
-- Signature-based virus detection
-- File and directory scanning
+- File scanning with MD5 signature matching
+- Real-time directory monitoring
+- Suspicious pattern detection
+- Process memory scanning
+- Detailed threat reporting
 - Command-line interface
-- Basic reporting functionality
-
-## Usage
-
-Run the program:
-```
-python antivirus.py
-```
-
-Available commands:
-- `scan <file/directory>`: Scan a specific file or directory for threats
-- `report`: Show the last scan report
-- `help`: Display help message
-- `exit`: Exit the program
-
-## How it Works
-
-1. The program maintains a database of known virus signatures (SHA-1 hashes)
-2. When scanning, it calculates the hash of each file
-3. If a file's hash matches any known virus signature, it's flagged as infected
-4. Results are displayed in the command line interface
-
-## Technical Details
-
-- Written in Python 3
-- Uses SHA-1 hashing for signature comparison
-- No external dependencies required
-- Stores virus signatures in JSON format
 
 ## Dependencies
 
-### Required Dependencies
-1. **OpenSSL**
+### Required
+1. **C++ Compiler**
+   - MinGW-w64 with GCC 8.1.0 or later (recommended)
+   - Visual Studio 2019 or later
+   - Must support C++17
+
+2. **OpenSSL**
    ```bash
    # Using MSYS2/MinGW64
    pacman -S mingw-w64-x86_64-openssl
    ```
-
-2. **C++ Compiler**
-   - MinGW-w64 with GCC 8.1.0 or later
-   - Visual Studio 2019 or later with C++17 support
 
 3. **Build Tools**
    ```bash
@@ -55,8 +31,8 @@ Available commands:
    pacman -S mingw-w64-x86_64-cmake mingw-w64-x86_64-ninja
    ```
 
-### Optional Dependencies
-1. **Google Test** (for running tests)
+### Optional
+- **Google Test** (for unit testing)
    ```bash
    # Using MSYS2/MinGW64
    pacman -S mingw-w64-x86_64-gtest
@@ -78,13 +54,36 @@ Available commands:
    cmake --build .
    ```
 
-3. **Run the antivirus**
-   ```bash
-   ./simple_av.exe
-   ```
+## Usage
 
-## Running Tests
+Run the antivirus with administrator privileges:
+```bash
+./simple_av.exe
+```
+
+Available commands:
+- `scan <path>` - Scan a file or directory
+- `monitor <path>` - Start real-time monitoring
+- `stats` - Show scan statistics
+- `help` - Show available commands
+- `clear` - Clear screen
+- `exit` - Exit program
+
+## Development
+
+### Project Structure
+```
+simple_antivirus/
+├── src/
+│   ├── main.cpp            # Main program entry
+│   ├── scanner.cpp/h       # File scanning engine
+│   └── realtime_monitor.cpp/h  # Real-time monitoring
+├── tests/
+│   └── unit_tests/         # Unit test files
+└── CMakeLists.txt         # Build configuration
+```
+
+### Running Tests
 ```bash
 # In the build directory
 ./run_tests.exe
-```
